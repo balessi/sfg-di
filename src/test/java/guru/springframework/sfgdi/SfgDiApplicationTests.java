@@ -7,10 +7,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class SfgDiApplicationTests {
+public class SfgDiApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 		//no need for code here
 	}
 
