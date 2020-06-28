@@ -2,12 +2,23 @@ package guru.springframework.sfgdi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
+import guru.springframework.sfgdi.controllers.MyController;
+
+/**
+ * @author Bruno S. Alessi <bruno_alessi@yahoo.com.br>
+ * @since 2020-06-28
+ */
 @SpringBootApplication
 public class SfgDiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SfgDiApplication.class, args);
+		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
+		
+		MyController cntr = (MyController)ctx.getBean("myController");
+		String ret = cntr.sayHello();
+		System.out.printf("MyController.sayHello() returned: %s\n", ret);
 	}
 
 }
