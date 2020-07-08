@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import guru.springframework.sfgdi.services.GreetingServiceImpl;
+import guru.springframework.sfgdi.services.DefaultGreetingService;
 
 /**
  * @author Bruno S. Alessi <bruno_alessi@yahoo.com.br>
@@ -22,7 +22,7 @@ public class ConstructorInjectedControllerTest {
 	
 	@BeforeEach
 	void setUp() {
-		this.controller = new ConstructorInjectedController(new GreetingServiceImpl());
+		this.controller = new ConstructorInjectedController(new DefaultGreetingService());
 	}
 	
 	@Test
