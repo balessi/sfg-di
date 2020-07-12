@@ -16,34 +16,38 @@ import guru.springframework.sfgdi.controllers.SetterInjectedController;
  */
 @SpringBootApplication
 public class SfgDiApplication {
-
+	
 	public static void main(String[] args) {
 		try (GenericApplicationContext ctx = 
 				(GenericApplicationContext) SpringApplication.run(SfgDiApplication.class, args)) {
 
+			// Getting a controller bean ref from the context, calling a service
+			// and printing the lifecycle of a bean (LifeCycleDemoBean)
 			MyController cntr = (MyController) ctx.getBean("myController");
 			System.out.printf("\nMyController.sayHello() returned: %s", cntr.sayHello());
 			
+			// Bean profile demo illustrated through i18n
 			I18nController i18nController = (I18nController) ctx.getBean("i18nController");
 			System.out.printf("\nI18nController.sayHello() returned: %s", i18nController.sayHello());
 			
+			// Demonstrating types of injection
 			diRoutines(ctx);
 		}
 	}
 
 	// Dependency Injection types
 	private static void diRoutines(final GenericApplicationContext ctx) {
-		// Avoid this one
+		// 1 - Injection by property - AVOID THIS ONE
 		System.out.println("\n\n-----------Property ");
 		PropertyInjectedController prop = (PropertyInjectedController)ctx.getBean("propertyInjectedController");
 		System.out.println(prop.greeting());
 		
-		// OK, but the next one is better
+		// 2 - Injection by Setter - OK, but the next one is better
 		System.out.println("\n-----------Setter ");
 		SetterInjectedController sett = (SetterInjectedController)ctx.getBean("setterInjectedController");
 		System.out.println(sett.greeting());
 		
-		// Use this - it is the best option
+		// 3 - Injection by Constructor - Use this, it is the best option
 		System.out.println("\n-----------Constructor ");
 		ConstructorInjectedController cons =  (ConstructorInjectedController)ctx.getBean("constructorInjectedController");
 		System.out.println(cons.greeting());
